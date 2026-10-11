@@ -1,0 +1,69 @@
+{
+    "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+    "meta": {
+        "title": "Ruvelo Inbox: Maya's inbox at Halyard",
+        "description": "A bell, an inbox and preferences, with Halyard's team site: mentions in notes, comment replies, posts going live and feature requests shipping in Ruvelo Feedback.",
+        "author": "Ruvelo",
+        "categories": ["Admin"]
+    },
+    "landingPage": "/wp-admin/admin.php?page=ruvelo-inbox",
+    "preferredVersions": {
+        "php": "8.3",
+        "wp": "7.1"
+    },
+    "features": {
+        "networking": false
+    },
+    "login": true,
+    "steps": [
+        {
+            "step": "setSiteOptions",
+            "options": {
+                "blogname": "Halyard",
+                "permalink_structure": "/%postname%/"
+            }
+        },
+        {
+            "step": "installTheme",
+            "themeData": {
+                "resource": "wordpress.org/themes",
+                "slug": "twentytwentyfive"
+            },
+            "options": {
+                "activate": true
+            }
+        },
+        {
+            "step": "installPlugin",
+            "pluginData": {
+                "resource": "url",
+                "url": "https://github.com/Ruvelo/wp-feedback/releases/latest/download/ruvelo-feedback.zip"
+            },
+            "options": {
+                "activate": true
+            }
+        },
+        {
+            "step": "wp-cli",
+            "command": "wp ruvelo-feedback demo --yes"
+        },
+        {
+            "step": "installPlugin",
+            "pluginData": {
+                "resource": "url",
+                "url": "https://github.com/Ruvelo/wp-inbox/releases/latest/download/ruvelo-inbox.zip"
+            },
+            "options": {
+                "activate": true
+            }
+        },
+        {
+            "step": "wp-cli",
+            "command": "wp ruvelo-inbox demo --yes"
+        },
+        {
+            "step": "wp-cli",
+            "command": "wp rewrite flush"
+        }
+    ]
+}
