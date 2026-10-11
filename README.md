@@ -23,7 +23,7 @@
 **The notification centre WordPress never shipped.** A bell with an unread count, an inbox and per-person preferences for everyone who signs in, plus a developer API other plugins send to. Core's own attempt (WP Notify) stalled in 2019, and WordPress 7.1's Notes create mentions and replies with nowhere central to collect them. Now they have somewhere to go.
 
 ```
-wp plugin install ruvelo-inbox --activate
+wp plugin install https://github.com/Ruvelo/wp-inbox/releases/latest/download/ruvelo-inbox.zip --activate
 ```
 
 That's all: the bell is in the toolbar, and notes, comments and posts start arriving. Or click around [Maya's inbox at Halyard in WordPress Playground](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/Ruvelo/wp-inbox/main/blueprint.json) first: it runs in your browser.
@@ -97,7 +97,7 @@ That's all: the bell is in the toolbar, and notes, comments and posts start arri
 
 ## Getting started
 
-**1. Install** from Plugins → Add New, with WP-CLI as above, or with Composer (`composer require ruvelo/wp-inbox`, installed by `composer/installers` as a WordPress plugin).
+**1. Install** by uploading [ruvelo-inbox.zip](https://github.com/Ruvelo/wp-inbox/releases/latest/download/ruvelo-inbox.zip) in Plugins → Add New → Upload Plugin, with WP-CLI as above, or with Composer (`composer require ruvelo/wp-inbox`, installed by `composer/installers` as a WordPress plugin).
 
 **2. Look at the bell.** Notes, comments and posts start arriving straight away. Everyone chooses what they hear about in **Inbox → Preferences**.
 
