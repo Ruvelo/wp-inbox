@@ -1,0 +1,19 @@
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+    level: 8
+    paths:
+        - ruvelo-inbox.php
+        - uninstall.php
+        - src
+        - templates
+        - blocks
+    scanFiles:
+        - vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
+        - vendor/php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php
+        # WordPress 7.1's note functions, which the 6.9 stubs don't have yet.
+        - tests/stubs/wordpress-7.1.php
+    bootstrapFiles:
+        - tests/phpstan-bootstrap.php
+    treatPhpDocTypesAsCertain: false
