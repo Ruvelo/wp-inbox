@@ -1,0 +1,59 @@
+{
+    "name": "ruvelo/wp-inbox",
+    "description": "The notification centre WordPress never shipped: a bell, an inbox and per-person preferences, plus a developer API other plugins send to.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "keywords": ["wordpress", "plugin", "notifications", "inbox", "notification center", "bell", "notes"],
+    "homepage": "https://ruvelo.github.io/wp-inbox/",
+    "authors": [
+        {"name": "François Bultez", "homepage": "https://github.com/francoisbultez"}
+    ],
+    "support": {
+        "issues": "https://github.com/Ruvelo/wp-inbox/issues",
+        "source": "https://github.com/Ruvelo/wp-inbox"
+    },
+    "require": {
+        "php": "^8.2",
+        "composer/installers": "^2.3"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "laravel/pint": "^1.18",
+        "php-stubs/wp-cli-stubs": "^2.11",
+        "phpstan/phpstan": "^2.1",
+        "szepeviktor/phpstan-wordpress": "^2.0",
+        "phpunit/phpunit": "^9.6",
+        "wp-coding-standards/wpcs": "^3.1",
+        "wp-phpunit/wp-phpunit": "^7.1",
+        "yoast/phpunit-polyfills": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {"Ruvelo\\WP\\Inbox\\": "src/"}
+    },
+    "autoload-dev": {
+        "psr-4": {"Ruvelo\\WP\\Inbox\\Tests\\": "tests/"}
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {"composer/installers": true, "dealerdirect/phpcodesniffer-composer-installer": true}
+    },
+    "scripts": {
+        "test": "phpunit",
+        "lint": ["pint --test", "phpcs"],
+        "format": ["pint", "phpcbf || true"],
+        "analyse": "phpstan analyse --memory-limit=1G",
+        "check": ["@lint", "@analyse", "@test"],
+        "zip": "bash bin/build-zip.sh",
+        "pot": "wp i18n make-pot . languages/ruvelo-inbox.pot --slug=ruvelo-inbox --domain=ruvelo-inbox --exclude=vendor,tests,.wp,build,node_modules"
+    },
+    "scripts-descriptions": {
+        "test": "Run the PHPUnit integration tests",
+        "lint": "Check code style (Pint) and the WordPress security, database and i18n sniffs (PHPCS)",
+        "format": "Fix code style",
+        "analyse": "Run PHPStan at level 8",
+        "check": "Everything CI runs",
+        "zip": "Build build/ruvelo-inbox.zip, the distributable plugin",
+        "pot": "Regenerate languages/ruvelo-inbox.pot"
+    },
+    "minimum-stability": "stable"
+}

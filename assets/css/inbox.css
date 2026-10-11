@@ -1,0 +1,1293 @@
+/*
+ * Ruvelo Inbox: the bell, the inbox and the preferences.
+ *
+ * Every colour, radius and font is a CSS variable; override any of them:
+ *   .ruvelo-inbox, .ruvelo-inbox-bell { --ruvelo-inbox-accent: #0f766e; }
+ *
+ * The bell lives inside the toolbar (#wpadminbar), which resets every
+ * element it contains, so its rules are scoped with :is(#wpadminbar, body)
+ * to win that fight on both the toolbar and a site header.
+ */
+
+.ruvelo-inbox,
+.ruvelo-inbox-bell,
+.ruvelo-inbox-screen {
+	--ruvelo-inbox-bg: #fff;
+	--ruvelo-inbox-subtle: #f8f8fc;
+	--ruvelo-inbox-muted: #f0f0f7;
+	--ruvelo-inbox-line: #e4e4ef;
+	--ruvelo-inbox-ink: #16162a;
+	--ruvelo-inbox-text-2: #4b4b63;
+	--ruvelo-inbox-text-3: #6b6b82;
+	--ruvelo-inbox-accent: #3d4eff;
+	--ruvelo-inbox-accent-2: #a78bfa;
+	--ruvelo-inbox-accent-ink: #2b38d6;
+	--ruvelo-inbox-accent-soft: #eef0ff;
+	--ruvelo-inbox-on-accent: #fff;
+	--ruvelo-inbox-danger: #d92d45;
+	--ruvelo-inbox-danger-soft: #fdecef;
+	--ruvelo-inbox-radius: 8px;
+	--ruvelo-inbox-radius-lg: 14px;
+	--ruvelo-inbox-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.ruvelo-inbox[data-theme="dark"],
+.ruvelo-inbox-bell[data-theme="dark"],
+.ruvelo-inbox-screen.ruvelo-inbox-scheme-dark {
+	--ruvelo-inbox-bg: #11111c;
+	--ruvelo-inbox-subtle: #171725;
+	--ruvelo-inbox-muted: #1f1f30;
+	--ruvelo-inbox-line: #2a2a3f;
+	--ruvelo-inbox-ink: #f1f1f8;
+	--ruvelo-inbox-text-2: #b6b6cc;
+	--ruvelo-inbox-text-3: #8f8fab;
+	--ruvelo-inbox-accent: #8f9bff;
+	--ruvelo-inbox-accent-2: #c4b5fd;
+	--ruvelo-inbox-accent-ink: #b3bbff;
+	--ruvelo-inbox-accent-soft: #1e2150;
+	--ruvelo-inbox-on-accent: #0b0b1a;
+	--ruvelo-inbox-danger: #ff6b80;
+	--ruvelo-inbox-danger-soft: #331520;
+}
+
+@media (prefers-color-scheme: dark) {
+	.ruvelo-inbox[data-theme="auto"],
+	.ruvelo-inbox-bell[data-theme="auto"],
+	.ruvelo-inbox-screen.ruvelo-inbox-scheme-auto {
+		--ruvelo-inbox-bg: #11111c;
+		--ruvelo-inbox-subtle: #171725;
+		--ruvelo-inbox-muted: #1f1f30;
+		--ruvelo-inbox-line: #2a2a3f;
+		--ruvelo-inbox-ink: #f1f1f8;
+		--ruvelo-inbox-text-2: #b6b6cc;
+		--ruvelo-inbox-text-3: #8f8fab;
+		--ruvelo-inbox-accent: #8f9bff;
+		--ruvelo-inbox-accent-2: #c4b5fd;
+		--ruvelo-inbox-accent-ink: #b3bbff;
+		--ruvelo-inbox-accent-soft: #1e2150;
+		--ruvelo-inbox-on-accent: #0b0b1a;
+		--ruvelo-inbox-danger: #ff6b80;
+		--ruvelo-inbox-danger-soft: #331520;
+	}
+}
+
+/* ---------- Shared ---------- */
+
+.ruvelo-inbox-sr,
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-sr {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
+
+.ruvelo-inbox-svg {
+	width: 1rem;
+	height: 1rem;
+	flex: none;
+}
+
+/* ---------- The bell ---------- */
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell,
+:is(#wpadminbar, body) .ruvelo-inbox-bell * {
+	box-sizing: border-box;
+	font-family: var(--ruvelo-inbox-sans);
+	letter-spacing: normal;
+	text-transform: none;
+	float: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell {
+	position: relative;
+	display: inline-flex;
+	vertical-align: middle;
+	font-size: 15px;
+	line-height: 1.5;
+	color: var(--ruvelo-inbox-ink);
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell :focus-visible {
+	outline: 2px solid var(--ruvelo-inbox-accent);
+	outline-offset: 2px;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-bell-button {
+	position: relative;
+	display: grid;
+	place-items: center;
+	width: 2.375rem;
+	height: 2.375rem;
+	padding: 0;
+	margin: 0;
+	border-radius: var(--ruvelo-inbox-radius);
+	border: 1px solid transparent;
+	background: transparent;
+	color: var(--ruvelo-inbox-text-2);
+	text-decoration: none;
+	cursor: pointer;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-bell-button:hover,
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-bell-button[aria-expanded="true"] {
+	background: var(--ruvelo-inbox-muted);
+	color: var(--ruvelo-inbox-ink);
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-bell-button .ruvelo-inbox-svg {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-badge {
+	position: absolute;
+	top: .1rem;
+	right: .05rem;
+	min-width: 1.15rem;
+	height: 1.15rem;
+	padding: 0 .3rem;
+	border-radius: 999px;
+	background: var(--ruvelo-inbox-accent);
+	color: var(--ruvelo-inbox-on-accent);
+	border: 2px solid var(--ruvelo-inbox-bg);
+	font-size: .625rem;
+	font-weight: 600;
+	line-height: calc(1.15rem - 4px);
+	text-align: center;
+	font-variant-numeric: tabular-nums;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell [hidden] {
+	display: none !important;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel {
+	position: absolute;
+	z-index: 100000;
+	top: calc(100% + .5rem);
+	right: 0;
+	left: auto;
+	width: min(24rem, calc(100vw - 32px));
+	height: auto;
+	background: var(--ruvelo-inbox-bg);
+	border: 1px solid var(--ruvelo-inbox-line);
+	border-radius: var(--ruvelo-inbox-radius-lg);
+	box-shadow: 0 24px 60px -28px color-mix(in srgb, var(--ruvelo-inbox-accent) 55%, transparent), 0 2px 6px rgb(22 22 42 / .08);
+	overflow: hidden;
+	text-align: left;
+	color: var(--ruvelo-inbox-ink);
+	font-size: 15px;
+	line-height: 1.5;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel:focus {
+	outline: none;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: .85rem 1rem .75rem;
+	border-bottom: 1px solid var(--ruvelo-inbox-line);
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-head h2 {
+	margin: 0;
+	padding: 0;
+	font-size: .95rem;
+	font-weight: 600;
+	line-height: 1.3;
+	letter-spacing: -.01em;
+	color: var(--ruvelo-inbox-ink);
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell form {
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-link {
+	display: inline-block;
+	appearance: none;
+	background: none;
+	border: 0;
+	height: auto;
+	padding: .2rem .35rem;
+	margin: -.2rem -.35rem;
+	border-radius: 6px;
+	font-size: .8rem;
+	font-weight: 500;
+	line-height: 1.3;
+	color: var(--ruvelo-inbox-accent);
+	cursor: pointer;
+	text-decoration: none;
+	box-shadow: none;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-link:hover {
+	background: var(--ruvelo-inbox-accent-soft);
+	color: var(--ruvelo-inbox-accent-ink);
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-link[disabled] {
+	color: var(--ruvelo-inbox-text-3);
+	background: none;
+	cursor: default;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-link--quiet {
+	color: var(--ruvelo-inbox-text-2);
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-list {
+	display: block;
+	list-style: none;
+	margin: 0;
+	padding: .35rem;
+	max-height: min(26rem, 65vh);
+	overflow-y: auto;
+	scrollbar-width: thin;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-list > li {
+	display: block;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-item {
+	position: relative;
+	display: grid;
+	grid-template-columns: 2rem minmax(0, 1fr) .5rem;
+	gap: .75rem;
+	align-items: start;
+	height: auto;
+	padding: .65rem .65rem .7rem;
+	border-radius: 10px;
+	color: var(--ruvelo-inbox-ink);
+	text-decoration: none;
+	white-space: normal;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-item:hover,
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-item:focus {
+	background: var(--ruvelo-inbox-subtle);
+	color: var(--ruvelo-inbox-ink);
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-item.is-unread {
+	background: color-mix(in srgb, var(--ruvelo-inbox-accent-soft) 55%, transparent);
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-item.is-unread:hover {
+	background: var(--ruvelo-inbox-accent-soft);
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-avatar {
+	display: grid;
+	place-items: center;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 999px;
+	background: var(--ruvelo-inbox-accent-soft);
+	color: var(--ruvelo-inbox-accent-ink);
+	font-size: .7rem;
+	font-weight: 600;
+	line-height: 1;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-avatar--icon {
+	background: var(--ruvelo-inbox-muted);
+	color: var(--ruvelo-inbox-text-2);
+	font-size: .9rem;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-item.is-unread .ruvelo-inbox-avatar--icon {
+	background: var(--ruvelo-inbox-bg);
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-text {
+	display: grid;
+	gap: .1rem;
+	min-width: 0;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-title {
+	font-size: .875rem;
+	line-height: 1.35;
+	font-weight: 500;
+	color: var(--ruvelo-inbox-text-2);
+	overflow-wrap: anywhere;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .is-unread .ruvelo-inbox-panel-title {
+	color: var(--ruvelo-inbox-ink);
+	font-weight: 600;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-body {
+	font-size: .8125rem;
+	line-height: 1.45;
+	color: var(--ruvelo-inbox-text-3);
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	overflow-wrap: anywhere;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-time {
+	font-size: .75rem;
+	line-height: 1.4;
+	color: var(--ruvelo-inbox-text-3);
+	margin-top: .15rem;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-dot {
+	display: block;
+	width: .5rem;
+	height: .5rem;
+	margin-top: .4rem;
+	border-radius: 50%;
+	background: var(--ruvelo-inbox-accent);
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-empty {
+	display: grid;
+	gap: .2rem;
+	padding: 2rem 1rem;
+	text-align: center;
+	font-size: .85rem;
+	color: var(--ruvelo-inbox-text-3);
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-empty strong {
+	color: var(--ruvelo-inbox-ink);
+	font-weight: 600;
+	font-size: .9rem;
+}
+
+:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel-foot {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+	padding: .7rem 1rem;
+	border-top: 1px solid var(--ruvelo-inbox-line);
+	background: var(--ruvelo-inbox-subtle);
+}
+
+/* In the toolbar: sized and coloured like its other items. */
+
+#wpadminbar #wp-admin-bar-ruvelo-inbox > .ab-item {
+	padding: 0 4px;
+	height: 32px;
+}
+
+#wpadminbar .ruvelo-inbox-bell--bar {
+	height: 32px;
+	align-items: center;
+}
+
+#wpadminbar .ruvelo-inbox-bell--bar .ruvelo-inbox-bell-button {
+	width: 32px;
+	height: 32px;
+	border-radius: 0;
+	color: #f0f0f1;
+}
+
+#wpadminbar .ruvelo-inbox-bell--bar .ruvelo-inbox-bell-button:hover,
+#wpadminbar .ruvelo-inbox-bell--bar .ruvelo-inbox-bell-button[aria-expanded="true"] {
+	background: #2c3338;
+	color: #72aee6;
+}
+
+#wpadminbar .ruvelo-inbox-bell--bar .ruvelo-inbox-bell-button .ruvelo-inbox-svg {
+	width: 20px;
+	height: 20px;
+}
+
+#wpadminbar .ruvelo-inbox-bell--bar .ruvelo-inbox-badge {
+	top: 2px;
+	right: -1px;
+	border-color: #1d2327;
+	background: #3d4eff;
+	color: #fff;
+}
+
+#wpadminbar .ruvelo-inbox-bell--bar .ruvelo-inbox-panel {
+	top: 100%;
+	margin-top: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+@media screen and (max-width: 782px) {
+	#wpadminbar li#wp-admin-bar-ruvelo-inbox {
+		display: block;
+	}
+
+	#wpadminbar #wp-admin-bar-ruvelo-inbox > .ab-item,
+	#wpadminbar .ruvelo-inbox-bell--bar,
+	#wpadminbar .ruvelo-inbox-bell--bar .ruvelo-inbox-bell-button {
+		height: 46px;
+	}
+
+	#wpadminbar .ruvelo-inbox-bell--bar .ruvelo-inbox-bell-button {
+		width: 46px;
+	}
+
+	#wpadminbar .ruvelo-inbox-bell--bar .ruvelo-inbox-bell-button .ruvelo-inbox-svg {
+		width: 26px;
+		height: 26px;
+	}
+
+	#wpadminbar .ruvelo-inbox-bell--bar .ruvelo-inbox-badge {
+		top: 6px;
+		right: 3px;
+	}
+}
+
+@media (max-width: 30rem) {
+	:is(#wpadminbar, body) .ruvelo-inbox-bell .ruvelo-inbox-panel {
+		position: fixed;
+		left: 16px;
+		right: 16px;
+		width: auto;
+		top: 3.5rem;
+	}
+
+	#wpadminbar .ruvelo-inbox-bell--bar .ruvelo-inbox-panel {
+		top: 46px;
+		left: 8px;
+		right: 8px;
+		border-radius: var(--ruvelo-inbox-radius-lg);
+	}
+}
+
+/* ---------- The inbox and preferences pages ---------- */
+
+.ruvelo-inbox {
+	color: var(--ruvelo-inbox-ink);
+	font-family: var(--ruvelo-inbox-sans);
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+	max-width: 46rem;
+	margin-inline: auto;
+}
+
+.ruvelo-inbox *,
+.ruvelo-inbox *::before,
+.ruvelo-inbox *::after {
+	box-sizing: border-box;
+}
+
+.ruvelo-inbox a {
+	color: var(--ruvelo-inbox-accent-ink);
+	text-decoration: none;
+}
+
+.ruvelo-inbox a:hover {
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.ruvelo-inbox :focus-visible {
+	outline: 2px solid var(--ruvelo-inbox-accent);
+	outline-offset: 2px;
+	border-radius: 4px;
+	box-shadow: none;
+}
+
+.ruvelo-inbox [hidden] {
+	display: none !important;
+}
+
+.ruvelo-inbox form {
+	margin: 0;
+}
+
+.ruvelo-inbox .ruvelo-inbox-h1,
+.ruvelo-inbox h2 {
+	font-family: var(--ruvelo-inbox-sans);
+	font-weight: 600;
+	letter-spacing: -.02em;
+	line-height: 1.25;
+	color: var(--ruvelo-inbox-ink);
+	padding: 0;
+	text-transform: none;
+}
+
+.ruvelo-inbox .ruvelo-inbox-h1 {
+	font-size: 1.875rem;
+	margin: 0;
+}
+
+.ruvelo-inbox-wrap {
+	margin-top: 0;
+}
+
+.ruvelo-inbox--admin {
+	padding: 2rem 0 4rem;
+}
+
+.ruvelo-inbox-views {
+	display: flex;
+	gap: 1.25rem;
+	margin: 0 0 1.75rem;
+	border-bottom: 1px solid var(--ruvelo-inbox-line);
+}
+
+.ruvelo-inbox .ruvelo-inbox-views a {
+	padding: .6rem 0;
+	margin-bottom: -1px;
+	color: var(--ruvelo-inbox-text-2);
+	font-weight: 500;
+	border-bottom: 2px solid transparent;
+}
+
+.ruvelo-inbox .ruvelo-inbox-views a:hover {
+	color: var(--ruvelo-inbox-ink);
+	text-decoration: none;
+}
+
+.ruvelo-inbox .ruvelo-inbox-views a[aria-current] {
+	color: var(--ruvelo-inbox-ink);
+	border-bottom-color: var(--ruvelo-inbox-accent);
+}
+
+.ruvelo-inbox-head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-bottom: 1.75rem;
+}
+
+.ruvelo-inbox .ruvelo-inbox-sub {
+	margin: .35rem 0 0;
+	color: var(--ruvelo-inbox-text-3);
+	font-size: .9rem;
+	max-width: 34rem;
+}
+
+.ruvelo-inbox-sub strong {
+	color: var(--ruvelo-inbox-accent-ink);
+	font-weight: 600;
+}
+
+.ruvelo-inbox-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+}
+
+.ruvelo-inbox .ruvelo-inbox-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: .45rem;
+	min-height: 0;
+	margin: 0;
+	font-family: var(--ruvelo-inbox-sans);
+	font-size: .875rem;
+	font-weight: 500;
+	line-height: 1;
+	padding: .6rem .95rem;
+	border-radius: var(--ruvelo-inbox-radius);
+	border: 1px solid var(--ruvelo-inbox-accent);
+	background: var(--ruvelo-inbox-accent);
+	color: var(--ruvelo-inbox-on-accent);
+	cursor: pointer;
+	box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--ruvelo-inbox-accent) 70%, transparent);
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.ruvelo-inbox .ruvelo-inbox-btn:hover {
+	background: var(--ruvelo-inbox-accent-ink);
+	border-color: var(--ruvelo-inbox-accent-ink);
+	color: var(--ruvelo-inbox-on-accent);
+	text-decoration: none;
+}
+
+.ruvelo-inbox .ruvelo-inbox-btn--quiet {
+	background: var(--ruvelo-inbox-bg);
+	color: var(--ruvelo-inbox-ink);
+	border-color: var(--ruvelo-inbox-line);
+	box-shadow: none;
+}
+
+.ruvelo-inbox .ruvelo-inbox-btn--quiet:hover {
+	background: var(--ruvelo-inbox-subtle);
+	border-color: var(--ruvelo-inbox-text-3);
+	color: var(--ruvelo-inbox-ink);
+}
+
+.ruvelo-inbox .ruvelo-inbox-btn[disabled] {
+	opacity: .5;
+	cursor: default;
+}
+
+.ruvelo-inbox .ruvelo-inbox-btn--quiet[disabled]:hover {
+	background: var(--ruvelo-inbox-bg);
+	border-color: var(--ruvelo-inbox-line);
+}
+
+.ruvelo-inbox .ruvelo-inbox-notice {
+	display: flex;
+	align-items: center;
+	gap: .6rem;
+	background: var(--ruvelo-inbox-subtle);
+	border: 1px solid var(--ruvelo-inbox-line);
+	padding: .6rem .9rem;
+	border-radius: var(--ruvelo-inbox-radius);
+	margin: 0 0 1.5rem;
+	font-size: .9rem;
+}
+
+.ruvelo-inbox-notice::before {
+	content: "";
+	width: .5rem;
+	height: .5rem;
+	border-radius: 50%;
+	background: var(--ruvelo-inbox-accent);
+	flex: none;
+}
+
+.ruvelo-inbox-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: .75rem 1rem;
+	padding-bottom: .9rem;
+	border-bottom: 1px solid var(--ruvelo-inbox-line);
+}
+
+.ruvelo-inbox-tabs {
+	display: inline-flex;
+	gap: .25rem;
+	padding: .25rem;
+	background: var(--ruvelo-inbox-muted);
+	border-radius: 10px;
+}
+
+.ruvelo-inbox .ruvelo-inbox-tabs a {
+	display: inline-flex;
+	align-items: center;
+	gap: .45rem;
+	padding: .4rem .85rem;
+	border-radius: 7px;
+	color: var(--ruvelo-inbox-text-2);
+	font-size: .875rem;
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.ruvelo-inbox .ruvelo-inbox-tabs a:hover {
+	color: var(--ruvelo-inbox-ink);
+	text-decoration: none;
+}
+
+.ruvelo-inbox .ruvelo-inbox-tabs a[aria-current] {
+	background: var(--ruvelo-inbox-bg);
+	color: var(--ruvelo-inbox-ink);
+	box-shadow: 0 0 0 1px var(--ruvelo-inbox-line);
+}
+
+.ruvelo-inbox-count {
+	display: inline-grid;
+	place-items: center;
+	min-width: 1.35rem;
+	height: 1.35rem;
+	padding: 0 .4rem;
+	border-radius: 999px;
+	background: var(--ruvelo-inbox-accent-soft);
+	color: var(--ruvelo-inbox-accent-ink);
+	font-size: .7rem;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+}
+
+.ruvelo-inbox .ruvelo-inbox-filter,
+.ruvelo-inbox .ruvelo-inbox-bulk {
+	display: flex;
+	gap: .5rem;
+	align-items: center;
+}
+
+.ruvelo-inbox select {
+	font-family: var(--ruvelo-inbox-sans);
+	font-size: .875rem;
+	line-height: 1.2;
+	min-height: 0;
+	height: auto;
+	color: var(--ruvelo-inbox-ink);
+	background-color: var(--ruvelo-inbox-bg);
+	border: 1px solid var(--ruvelo-inbox-line);
+	border-radius: var(--ruvelo-inbox-radius);
+	padding: .55rem 2rem .55rem .75rem;
+	max-width: 15rem;
+	appearance: none;
+	box-shadow: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2374748b' stroke-width='1.5'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right .6rem center;
+	background-size: 1rem;
+}
+
+.ruvelo-inbox select:focus {
+	outline: none;
+	border-color: var(--ruvelo-inbox-accent);
+	box-shadow: 0 0 0 3px var(--ruvelo-inbox-accent-soft);
+	color: var(--ruvelo-inbox-ink);
+}
+
+.ruvelo-inbox .ruvelo-inbox-bulk {
+	margin: 1rem 0 -.5rem;
+	font-size: .85rem;
+	color: var(--ruvelo-inbox-text-3);
+}
+
+.ruvelo-inbox .ruvelo-inbox-check {
+	display: inline-flex;
+	align-items: center;
+	gap: .5rem;
+	margin-right: auto;
+	padding-left: 1rem;
+	cursor: pointer;
+}
+
+.ruvelo-inbox-day h2 {
+	font-size: .8rem;
+	font-weight: 600;
+	letter-spacing: 0;
+	color: var(--ruvelo-inbox-text-3);
+	margin: 1.75rem 0 .5rem;
+}
+
+.ruvelo-inbox .ruvelo-inbox-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: .25rem;
+}
+
+.ruvelo-inbox .ruvelo-inbox-item {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1rem 2.5rem minmax(0, 1fr) auto;
+	gap: .9rem;
+	align-items: start;
+	margin: 0;
+	padding: .9rem 1rem;
+	border-radius: var(--ruvelo-inbox-radius-lg);
+	border: 1px solid transparent;
+}
+
+.ruvelo-inbox .ruvelo-inbox-item:hover {
+	background: var(--ruvelo-inbox-subtle);
+}
+
+.ruvelo-inbox .ruvelo-inbox-item.is-unread {
+	background: color-mix(in srgb, var(--ruvelo-inbox-accent-soft) 60%, transparent);
+}
+
+.ruvelo-inbox .ruvelo-inbox-item.is-unread:hover {
+	background: var(--ruvelo-inbox-accent-soft);
+}
+
+.ruvelo-inbox .ruvelo-inbox-item.is-unread::before {
+	content: "";
+	position: absolute;
+	left: -.35rem;
+	top: 1.55rem;
+	width: .45rem;
+	height: .45rem;
+	border-radius: 50%;
+	background: var(--ruvelo-inbox-accent);
+}
+
+.ruvelo-inbox input[type="checkbox"].ruvelo-inbox-select,
+.ruvelo-inbox .ruvelo-inbox-check input[type="checkbox"] {
+	position: relative;
+	z-index: 2;
+	appearance: none;
+	width: 1rem;
+	height: 1rem;
+	min-width: 1rem;
+	margin: .75rem 0 0;
+	padding: 0;
+	border: 1.5px solid var(--ruvelo-inbox-line);
+	border-radius: 4px;
+	background: var(--ruvelo-inbox-bg);
+	box-shadow: none;
+	cursor: pointer;
+	display: grid;
+	place-items: center;
+}
+
+.ruvelo-inbox .ruvelo-inbox-check input[type="checkbox"] {
+	margin: 0;
+}
+
+.ruvelo-inbox input[type="checkbox"].ruvelo-inbox-select:hover,
+.ruvelo-inbox .ruvelo-inbox-check input[type="checkbox"]:hover {
+	border-color: var(--ruvelo-inbox-text-3);
+}
+
+.ruvelo-inbox input[type="checkbox"].ruvelo-inbox-select:checked,
+.ruvelo-inbox .ruvelo-inbox-check input[type="checkbox"]:checked {
+	background: var(--ruvelo-inbox-accent);
+	border-color: var(--ruvelo-inbox-accent);
+}
+
+.ruvelo-inbox input[type="checkbox"].ruvelo-inbox-select:checked::before,
+.ruvelo-inbox .ruvelo-inbox-check input[type="checkbox"]:checked::before {
+	content: "";
+	width: .5rem;
+	height: .28rem;
+	margin: -.12rem 0 0;
+	border-left: 2px solid var(--ruvelo-inbox-on-accent);
+	border-bottom: 2px solid var(--ruvelo-inbox-on-accent);
+	transform: rotate(-45deg);
+	float: none;
+	background: none;
+}
+
+.ruvelo-inbox .ruvelo-inbox-avatar {
+	display: grid;
+	place-items: center;
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 999px;
+	background: var(--ruvelo-inbox-accent-soft);
+	color: var(--ruvelo-inbox-accent-ink);
+	font-size: .8rem;
+	font-weight: 600;
+	line-height: 1;
+}
+
+.ruvelo-inbox .ruvelo-inbox-avatar--icon {
+	background: var(--ruvelo-inbox-muted);
+	color: var(--ruvelo-inbox-text-2);
+	font-size: 1.05rem;
+}
+
+.ruvelo-inbox .ruvelo-inbox-item.is-unread .ruvelo-inbox-avatar--icon {
+	background: var(--ruvelo-inbox-bg);
+}
+
+.ruvelo-inbox-body {
+	min-width: 0;
+}
+
+.ruvelo-inbox .ruvelo-inbox-title {
+	display: block;
+	font-weight: 500;
+	color: var(--ruvelo-inbox-text-2);
+	line-height: 1.4;
+	overflow-wrap: anywhere;
+}
+
+.ruvelo-inbox .ruvelo-inbox-item.is-unread .ruvelo-inbox-title {
+	font-weight: 600;
+	color: var(--ruvelo-inbox-ink);
+}
+
+.ruvelo-inbox .ruvelo-inbox-title:hover {
+	color: var(--ruvelo-inbox-accent-ink);
+	text-decoration: none;
+}
+
+/* The title's link covers the whole item; the checkbox and buttons sit above it. */
+.ruvelo-inbox .ruvelo-inbox-title::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+}
+
+.ruvelo-inbox .ruvelo-inbox-text {
+	margin: .2rem 0 0;
+	color: var(--ruvelo-inbox-text-2);
+	font-size: .9rem;
+	line-height: 1.55;
+	overflow-wrap: anywhere;
+}
+
+.ruvelo-inbox-meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: .25rem .5rem;
+	margin-top: .4rem;
+	color: var(--ruvelo-inbox-text-3);
+	font-size: .8rem;
+}
+
+.ruvelo-inbox-meta > span:not(.ruvelo-inbox-chip) + time::before {
+	content: "·";
+	margin-right: .5rem;
+}
+
+.ruvelo-inbox-chip {
+	display: inline-block;
+	padding: .05rem .55rem;
+	border-radius: 999px;
+	background: var(--ruvelo-inbox-muted);
+	color: var(--ruvelo-inbox-text-2);
+	font-size: .75rem;
+	font-weight: 500;
+	line-height: 1.6;
+}
+
+.ruvelo-inbox-chip--accent {
+	background: var(--ruvelo-inbox-accent-soft);
+	color: var(--ruvelo-inbox-accent-ink);
+}
+
+.ruvelo-inbox-tools {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	gap: .15rem;
+	opacity: .6;
+}
+
+.ruvelo-inbox-item:hover .ruvelo-inbox-tools,
+.ruvelo-inbox-item:focus-within .ruvelo-inbox-tools {
+	opacity: 1;
+}
+
+.ruvelo-inbox .ruvelo-inbox-icon {
+	display: grid;
+	place-items: center;
+	width: 2rem;
+	height: 2rem;
+	min-height: 0;
+	padding: 0;
+	margin: 0;
+	border-radius: var(--ruvelo-inbox-radius);
+	border: 1px solid transparent;
+	background: transparent;
+	color: var(--ruvelo-inbox-text-3);
+	cursor: pointer;
+	box-shadow: none;
+}
+
+.ruvelo-inbox .ruvelo-inbox-icon:hover {
+	background: var(--ruvelo-inbox-bg);
+	border-color: var(--ruvelo-inbox-line);
+	color: var(--ruvelo-inbox-ink);
+}
+
+.ruvelo-inbox .ruvelo-inbox-icon--danger:hover {
+	color: var(--ruvelo-inbox-danger);
+	border-color: color-mix(in srgb, var(--ruvelo-inbox-danger) 35%, transparent);
+	background: var(--ruvelo-inbox-danger-soft);
+}
+
+.ruvelo-inbox-empty {
+	text-align: center;
+	padding: 4rem 1rem 3rem;
+}
+
+.ruvelo-inbox-empty-mark {
+	display: inline-grid;
+	place-items: center;
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 999px;
+	background: var(--ruvelo-inbox-accent-soft);
+	color: var(--ruvelo-inbox-accent);
+	margin-bottom: 1rem;
+}
+
+.ruvelo-inbox-empty-mark .ruvelo-inbox-svg {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.ruvelo-inbox .ruvelo-inbox-empty h2 {
+	font-size: 1.125rem;
+	margin: 0 0 .35rem;
+}
+
+.ruvelo-inbox .ruvelo-inbox-empty p {
+	margin: 0 auto;
+	max-width: 26rem;
+	color: var(--ruvelo-inbox-text-3);
+	font-size: .9rem;
+}
+
+.ruvelo-inbox-pages {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-top: 2rem;
+	padding-top: 1rem;
+	border-top: 1px solid var(--ruvelo-inbox-line);
+	font-size: .875rem;
+	color: var(--ruvelo-inbox-text-3);
+}
+
+.ruvelo-inbox-pages div {
+	display: flex;
+	gap: .5rem;
+}
+
+/* Preferences */
+
+.ruvelo-inbox-prefs-group {
+	margin-top: 2rem;
+}
+
+.ruvelo-inbox .ruvelo-inbox-prefs-group h2 {
+	font-size: 1rem;
+	margin: 0 0 .75rem;
+}
+
+.ruvelo-inbox .ruvelo-inbox-prefs {
+	width: 100%;
+	margin: 0;
+	border-collapse: separate;
+	border-spacing: 0;
+	border: 1px solid var(--ruvelo-inbox-line);
+	border-radius: var(--ruvelo-inbox-radius-lg);
+	overflow: hidden;
+	font-size: .9rem;
+	background: var(--ruvelo-inbox-bg);
+}
+
+.ruvelo-inbox .ruvelo-inbox-prefs th,
+.ruvelo-inbox .ruvelo-inbox-prefs td {
+	padding: .9rem 1rem;
+	text-align: left;
+	vertical-align: middle;
+	border: 0;
+	border-top: 1px solid var(--ruvelo-inbox-line);
+	background: none;
+	color: var(--ruvelo-inbox-ink);
+}
+
+.ruvelo-inbox .ruvelo-inbox-prefs thead th {
+	border-top: 0;
+	background: var(--ruvelo-inbox-subtle);
+	font-size: .8rem;
+	font-weight: 500;
+	color: var(--ruvelo-inbox-text-3);
+}
+
+.ruvelo-inbox .ruvelo-inbox-prefs .ruvelo-inbox-prefs-channel {
+	width: 5.5rem;
+	text-align: center;
+}
+
+.ruvelo-inbox .ruvelo-inbox-prefs tbody th {
+	font-weight: 400;
+}
+
+.ruvelo-inbox-prefs-label {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: .5rem;
+	font-weight: 500;
+	color: var(--ruvelo-inbox-ink);
+}
+
+.ruvelo-inbox-prefs-desc {
+	display: block;
+	margin-top: .15rem;
+	color: var(--ruvelo-inbox-text-3);
+	font-size: .85rem;
+	line-height: 1.5;
+}
+
+.ruvelo-inbox-none {
+	color: var(--ruvelo-inbox-text-3);
+}
+
+.ruvelo-inbox-switch {
+	position: relative;
+	display: inline-block;
+	width: 2.25rem;
+	height: 1.3rem;
+	vertical-align: middle;
+}
+
+.ruvelo-inbox .ruvelo-inbox-switch input[type="checkbox"] {
+	appearance: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	min-width: 0;
+	border: 0;
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--ruvelo-inbox-text-3) 45%, var(--ruvelo-inbox-line));
+	cursor: pointer;
+	box-shadow: none;
+	transition: background-color .15s;
+}
+
+.ruvelo-inbox .ruvelo-inbox-switch input[type="checkbox"]::before {
+	content: "";
+	position: absolute;
+	top: .15rem;
+	left: .15rem;
+	width: 1rem;
+	height: 1rem;
+	margin: 0;
+	border-radius: 50%;
+	background: #fff;
+	transition: transform .15s;
+	box-shadow: 0 1px 2px rgb(22 22 42 / .2);
+}
+
+.ruvelo-inbox .ruvelo-inbox-switch input[type="checkbox"]:checked {
+	background: var(--ruvelo-inbox-accent);
+}
+
+.ruvelo-inbox .ruvelo-inbox-switch input[type="checkbox"]:checked::before {
+	transform: translateX(.95rem);
+	content: "";
+}
+
+.ruvelo-inbox .ruvelo-inbox-switch input[type="checkbox"]:disabled {
+	opacity: .55;
+	cursor: not-allowed;
+}
+
+.ruvelo-inbox .ruvelo-inbox-switch input[type="checkbox"]:focus-visible {
+	outline: 2px solid var(--ruvelo-inbox-accent);
+	outline-offset: 2px;
+}
+
+.ruvelo-inbox-prefs-save {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: .75rem 1rem;
+	margin-top: 1.75rem;
+}
+
+.ruvelo-inbox .ruvelo-inbox-prefs-save p {
+	margin: 0;
+	color: var(--ruvelo-inbox-text-3);
+	font-size: .85rem;
+	flex: 1 1 18rem;
+}
+
+.ruvelo-inbox--signin p {
+	margin: 0;
+}
+
+/* The admin screens, dark: the whole content area follows. */
+
+.ruvelo-inbox-screen.ruvelo-inbox-scheme-dark #wpcontent,
+.ruvelo-inbox-screen.ruvelo-inbox-scheme-dark #wpfooter {
+	background: var(--ruvelo-inbox-bg);
+	color: var(--ruvelo-inbox-text-3);
+}
+
+@media (prefers-color-scheme: dark) {
+	.ruvelo-inbox-screen.ruvelo-inbox-scheme-auto #wpcontent,
+	.ruvelo-inbox-screen.ruvelo-inbox-scheme-auto #wpfooter {
+		background: var(--ruvelo-inbox-bg);
+		color: var(--ruvelo-inbox-text-3);
+	}
+}
+
+.ruvelo-inbox-screen #wpcontent {
+	background: var(--ruvelo-inbox-bg);
+}
+
+/* Phones */
+
+@media (max-width: 40rem) {
+	.ruvelo-inbox--admin {
+		padding-top: 1rem;
+	}
+
+	.ruvelo-inbox .ruvelo-inbox-h1 {
+		font-size: 1.5rem;
+	}
+
+	.ruvelo-inbox .ruvelo-inbox-item {
+		grid-template-columns: 2.25rem minmax(0, 1fr);
+		padding: .85rem .75rem;
+		gap: .75rem;
+	}
+
+	.ruvelo-inbox input[type="checkbox"].ruvelo-inbox-select {
+		display: none;
+	}
+
+	.ruvelo-inbox .ruvelo-inbox-avatar {
+		width: 2.25rem;
+		height: 2.25rem;
+	}
+
+	.ruvelo-inbox-tools {
+		grid-column: 2;
+		opacity: 1;
+		margin: -.35rem 0 0 -.5rem;
+	}
+
+	.ruvelo-inbox .ruvelo-inbox-item.is-unread::before {
+		left: -.2rem;
+	}
+
+	.ruvelo-inbox-toolbar {
+		align-items: stretch;
+	}
+
+	.ruvelo-inbox .ruvelo-inbox-filter {
+		flex: 1 1 100%;
+	}
+
+	.ruvelo-inbox .ruvelo-inbox-filter select {
+		flex: 1;
+		max-width: none;
+	}
+
+	.ruvelo-inbox .ruvelo-inbox-bulk {
+		display: none;
+	}
+
+	.ruvelo-inbox .ruvelo-inbox-prefs th,
+	.ruvelo-inbox .ruvelo-inbox-prefs td {
+		padding: .8rem .65rem;
+	}
+
+	.ruvelo-inbox .ruvelo-inbox-prefs .ruvelo-inbox-prefs-channel {
+		width: 4rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ruvelo-inbox *,
+	.ruvelo-inbox-bell * {
+		transition: none !important;
+		animation: none !important;
+	}
+}

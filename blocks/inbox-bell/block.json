@@ -1,0 +1,34 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "ruvelo/inbox-bell",
+    "version": "1.0.0",
+    "title": "Notification Bell",
+    "category": "widgets",
+    "icon": "bell",
+    "description": "A bell for your site’s header: the unread count and the latest notifications in a dropdown. Shows nothing to visitors who aren’t signed in.",
+    "keywords": [
+        "notifications",
+        "inbox",
+        "bell"
+    ],
+    "textdomain": "ruvelo-inbox",
+    "attributes": {
+        "label": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "supports": {
+        "html": false,
+        "align": false,
+        "spacing": {
+            "margin": true,
+            "padding": true
+        }
+    },
+    "editorScript": "ruvelo-inbox-blocks",
+    "style": "ruvelo-inbox",
+    "render": "file:./render.php",
+    "example": {}
+}

@@ -1,0 +1,1062 @@
+# Copyright (C) 2026 Ruvelo
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Ruvelo Inbox 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ruvelo-inbox\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-09T07:35:52+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: ruvelo-inbox\n"
+
+#. Plugin Name of the plugin
+#: ruvelo-inbox.php
+#: src/Privacy.php:124
+msgid "Ruvelo Inbox"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: ruvelo-inbox.php
+msgid "https://ruvelo.github.io/wp-inbox/"
+msgstr ""
+
+#. Description of the plugin
+#: ruvelo-inbox.php
+msgid "The notification centre WordPress never shipped: a bell, an inbox and per-person preferences, plus a developer API other plugins send to."
+msgstr ""
+
+#. Author of the plugin
+#: ruvelo-inbox.php
+msgid "Ruvelo"
+msgstr ""
+
+#. Author URI of the plugin
+#: ruvelo-inbox.php
+msgid "https://github.com/Ruvelo"
+msgstr ""
+
+#: src/Abilities.php:45
+#: src/Admin/Admin.php:37
+#: src/Admin/Admin.php:45
+#: src/Privacy.php:29
+#: src/Privacy.php:40
+#: src/Privacy.php:72
+#: src/Views.php:107
+#: templates/inbox.php:35
+#: templates/parts/tabs.php:13
+#: assets/js/inbox.js:66
+msgid "Notifications"
+msgstr ""
+
+#: src/Abilities.php:46
+msgid "Read and tidy the signed-in person’s notifications, and send notifications to people."
+msgstr ""
+
+#: src/Abilities.php:70
+msgid "List my notifications"
+msgstr ""
+
+#: src/Abilities.php:71
+msgid "The signed-in person’s notifications, newest first: what happened (title and body), where it leads (url), its type, whether it’s been read and when it arrived. Use status \"unread\" to see only what’s new."
+msgstr ""
+
+#: src/Abilities.php:77
+msgid "Only this notification type, like \"note_mention\"."
+msgstr ""
+
+#: src/Abilities.php:96
+msgid "Count my unread notifications"
+msgstr ""
+
+#: src/Abilities.php:97
+msgid "How many notifications the signed-in person hasn’t read yet."
+msgstr ""
+
+#: src/Abilities.php:107
+msgid "Mark my notifications as read"
+msgstr ""
+
+#: src/Abilities.php:108
+msgid "Marks some of the signed-in person’s notifications as read (by ID), or all of them when no IDs are given."
+msgstr ""
+
+#: src/Abilities.php:124
+msgid "Send a notification"
+msgstr ""
+
+#: src/Abilities.php:125
+msgid "Sends a notification to people on this site (by user ID, login or email). It lands in their inbox, and by email if they chose that for the type. Needs the ruvelo_send_notifications capability."
+msgstr ""
+
+#. translators: %s: what the agent gave
+#: src/Abilities.php:209
+#, php-format
+msgid "There’s no user “%s” on this site."
+msgstr ""
+
+#: src/Actions.php:70
+msgid "This page was open for too long. Go back, reload it and try again."
+msgstr ""
+
+#: src/Actions.php:70
+msgid "Try again"
+msgstr ""
+
+#: src/Actions.php:110
+msgid "Your inbox works"
+msgstr ""
+
+#: src/Actions.php:111
+msgid "This is a test notification. New ones show up in the bell within a minute, without reloading."
+msgstr ""
+
+#. translators: %d: number of notifications
+#: src/Actions.php:159
+#, php-format
+msgid "Marked %d notification as read."
+msgid_plural "Marked %d notifications as read."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Actions.php:160
+#: templates/inbox.php:46
+msgid "You’re all caught up."
+msgstr ""
+
+#. translators: %d: number of notifications
+#: src/Actions.php:162
+#, php-format
+msgid "Marked %d notification as unread."
+msgid_plural "Marked %d notifications as unread."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of notifications
+#: src/Actions.php:164
+#, php-format
+msgid "Deleted %d notification."
+msgid_plural "Deleted %d notifications."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Actions.php:165
+msgid "Notification deleted."
+msgstr ""
+
+#: src/Actions.php:166
+msgid "Marked as unread."
+msgstr ""
+
+#: src/Actions.php:167
+msgid "Marked as read."
+msgstr ""
+
+#: src/Actions.php:168
+msgid "Preferences saved. They apply to new notifications."
+msgstr ""
+
+#: src/Actions.php:169
+msgid "Those preferences couldn’t be saved. Reload the page and try again."
+msgstr ""
+
+#: src/Actions.php:170
+msgid "Sent. Look at the bell."
+msgstr ""
+
+#. translators: %d: number of unread notifications
+#: src/Admin/Admin.php:33
+#, php-format
+msgid "%d unread notification"
+msgid_plural "%d unread notifications"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Admin/Admin.php:38
+#: src/Types.php:122
+#: templates/parts/tabs.php:12
+#: assets/js/blocks.js:34
+msgid "Inbox"
+msgstr ""
+
+#: src/Admin/Admin.php:46
+#: src/Mailer.php:312
+#: src/Privacy.php:64
+#: templates/preferences.php:26
+msgid "Notification preferences"
+msgstr ""
+
+#: src/Admin/Admin.php:46
+#: templates/bell.php:38
+#: templates/inbox.php:56
+#: templates/parts/tabs.php:14
+msgid "Preferences"
+msgstr ""
+
+#: src/Admin/Admin.php:47
+#: src/Admin/SettingsPage.php:45
+msgid "Inbox settings"
+msgstr ""
+
+#: src/Admin/Admin.php:47
+#: src/Admin/Admin.php:82
+msgid "Settings"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:54
+msgid "What sends notifications"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:55
+msgid "Each source adds its own notification types, which people can switch on and off in their preferences. Other plugins can send through the developer API whatever you choose here."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:61
+#: src/Privacy.php:60
+msgid "On"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:64
+msgid "Activate Ruvelo Feedback to use this."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:72
+#: src/Types.php:123
+msgid "Email"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:75
+msgid "Notification emails"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:77
+msgid "Email people the notifications they ask for"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:78
+msgid "Only types that are on for email in someone’s preferences. Emails from WordPress itself (notes, comments) and from Ruvelo Feedback are sent by them and follow each person’s switch either way."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:82
+msgid "Wait before sending"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:84
+msgid "minutes"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:85
+msgid "Everything that arrives for someone in this time goes out as one email, sent by WP-Cron in the background."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:89
+msgid "People per batch"
+msgstr ""
+
+#. translators: 1: emails waiting, 2: emails sent
+#: src/Admin/SettingsPage.php:94
+#, php-format
+msgid "Waiting: %1$d. Sent: %2$d."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:99
+msgid "Bell and pages"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:102
+msgid "Bell on the front end"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:103
+msgid "Show the bell in the toolbar on the site, not only in the admin"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:106
+msgid "Items in the bell"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:110
+#: assets/js/blocks.js:49
+msgid "Notifications per page"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:114
+msgid "Front-end inbox page"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:116
+msgid "None: use the admin screen"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:117
+msgid "A page with the Inbox block. When set, the bell on the site and the links in emails go there, so members never need wp-admin."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:121
+msgid "Colours"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:124
+msgid "Follow each person’s system (light or dark)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:125
+msgid "Always light"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:126
+msgid "Always dark"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:132
+msgid "Cleanup"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:135
+msgid "Keep notifications for"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:137
+msgid "days"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:138
+msgid "Keep unread notifications however old"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:140
+msgid "A daily WP-Cron job deletes older ones. 0 keeps everything."
+msgstr ""
+
+#. translators: %s: date and time
+#: src/Admin/SettingsPage.php:143
+#, php-format
+msgid "Next run: %s."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:148
+msgid "When the plugin is deleted"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:150
+msgid "Also delete every notification, preference and setting"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:151
+msgid "Off by default: deleting the plugin keeps everyone’s notifications. Scheduled jobs are always removed."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:155
+msgid "Save changes"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:158
+msgid "Try it"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:161
+msgid "Send yourself a notification and watch the bell pick it up."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:162
+msgid "Send me a test notification"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:162
+msgid "Open the inbox"
+msgstr ""
+
+#. translators: 1: person's name, 2: post title
+#: src/Demo.php:211
+#: src/Sources/Notes.php:185
+#, php-format
+msgid "%1$s mentioned you in a note on “%2$s”"
+msgstr ""
+
+#. translators: 1: person's name, 2: post title
+#: src/Demo.php:213
+#: src/Sources/Notes.php:187
+#, php-format
+msgid "%1$s replied to your note on “%2$s”"
+msgstr ""
+
+#. translators: 1: person's name, 2: post title
+#: src/Demo.php:215
+#: src/Sources/Notes.php:189
+#, php-format
+msgid "%1$s left a note on “%2$s”"
+msgstr ""
+
+#. translators: 1: person's name, 2: post title
+#: src/Demo.php:217
+#: src/Sources/Notes.php:191
+#, php-format
+msgid "%1$s replied in a note thread on “%2$s”"
+msgstr ""
+
+#. translators: 1: person's name, 2: post title
+#: src/Demo.php:219
+#: src/Sources/Comments.php:124
+#, php-format
+msgid "%1$s replied to your comment on “%2$s”"
+msgstr ""
+
+#. translators: 1: person's name, 2: post title
+#: src/Demo.php:221
+#: src/Sources/Comments.php:138
+#, php-format
+msgid "%1$s commented on “%2$s”"
+msgstr ""
+
+#. translators: %s: post title
+#: src/Demo.php:223
+#: src/Sources/Posts.php:121
+#, php-format
+msgid "“%s” is published"
+msgstr ""
+
+#. translators: 1: post title, 2: date and time
+#: src/Demo.php:225
+#: src/Sources/Posts.php:133
+#, php-format
+msgid "“%1$s” is scheduled for %2$s"
+msgstr ""
+
+#: src/Inbox.php:47
+msgid "A notification needs a title."
+msgstr ""
+
+#. translators: 1: site title, 2: notification title
+#: src/Mailer.php:221
+#, php-format
+msgid "[%1$s] %2$s"
+msgstr ""
+
+#. translators: %s: a link
+#: src/Mailer.php:229
+#, php-format
+msgid "Open it: %s"
+msgstr ""
+
+#. translators: 1: site title, 2: number of notifications
+#: src/Mailer.php:232
+#, php-format
+msgid "[%1$s] %2$d new notifications"
+msgstr ""
+
+#. translators: %s: the person's display name
+#: src/Mailer.php:234
+#, php-format
+msgid "Hi %s, here’s what happened:"
+msgstr ""
+
+#. translators: %s: a link
+#: src/Mailer.php:248
+#, php-format
+msgid "See them all: %s"
+msgstr ""
+
+#. translators: 1: notification type label, 2: link
+#: src/Mailer.php:256
+#, php-format
+msgid "Stop emails about %1$s: %2$s"
+msgstr ""
+
+#. translators: %s: link
+#: src/Mailer.php:259
+#, php-format
+msgid "Choose what you hear about: %s"
+msgstr ""
+
+#: src/Mailer.php:312
+msgid "This unsubscribe link isn’t valid any more. Sign in to choose which emails you get."
+msgstr ""
+
+#: src/Mailer.php:312
+msgid "Link expired"
+msgstr ""
+
+#: src/Mailer.php:315
+msgid "any notifications"
+msgstr ""
+
+#. translators: %s: what they unsubscribed from, like "mentions in notes"
+#: src/Mailer.php:320
+#, php-format
+msgid "Done. You won’t get emails about %s any more."
+msgstr ""
+
+#: src/Mailer.php:321
+msgid "Choose what you hear about"
+msgstr ""
+
+#: src/Mailer.php:321
+msgid "Unsubscribed"
+msgstr ""
+
+#. translators: %s: what they unsubscribe from, like "mentions in notes"
+#: src/Mailer.php:325
+#, php-format
+msgid "Stop emails about %s?"
+msgstr ""
+
+#: src/Mailer.php:327
+msgid "They’ll still show up in your inbox on the site. You can turn them back on in your notification preferences."
+msgstr ""
+
+#: src/Mailer.php:328
+msgid "Stop these emails"
+msgstr ""
+
+#: src/Notification.php:120
+msgid "Just now"
+msgstr ""
+
+#. translators: %s: a span of time, like "12 minutes"
+#: src/Notification.php:124
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: src/Notification.php:135
+msgid "Today"
+msgstr ""
+
+#: src/Notification.php:138
+msgid "Yesterday"
+msgstr ""
+
+#: src/Notification.php:140
+msgctxt "inbox day heading"
+msgid "l j F"
+msgstr ""
+
+#: src/Notification.php:140
+msgctxt "inbox day heading, another year"
+msgid "j F Y"
+msgstr ""
+
+#. translators: %s: notification type
+#: src/Preferences.php:102
+#, php-format
+msgid "There is no notification type called “%s”."
+msgstr ""
+
+#: src/Preferences.php:105
+msgid "Give each type an object of channel => true or false."
+msgstr ""
+
+#. translators: 1: channel, 2: notification type label
+#: src/Preferences.php:111
+#, php-format
+msgid "“%1$s” isn’t a channel for %2$s."
+msgstr ""
+
+#. translators: %s: notification type label
+#: src/Preferences.php:116
+#, php-format
+msgid "%s can’t be turned off."
+msgstr ""
+
+#: src/Privacy.php:60
+msgid "Off"
+msgstr ""
+
+#: src/Privacy.php:75
+#: templates/inbox.php:77
+msgid "Type"
+msgstr ""
+
+#: src/Privacy.php:76
+msgid "Title"
+msgstr ""
+
+#: src/Privacy.php:77
+msgid "Text"
+msgstr ""
+
+#: src/Privacy.php:78
+msgid "Link"
+msgstr ""
+
+#: src/Privacy.php:79
+msgid "From"
+msgstr ""
+
+#: src/Privacy.php:80
+msgid "Received"
+msgstr ""
+
+#: src/Privacy.php:81
+msgid "Read"
+msgstr ""
+
+#: src/Privacy.php:81
+msgid "Not yet"
+msgstr ""
+
+#: src/Privacy.php:125
+msgid "When something on this site concerns you (a mention, a reply, an update to something you follow), we keep a notification for you: what happened, a link, who did it and when, and whether you’ve read it. Old notifications are deleted after a while. You choose which notifications you get, in the inbox and by email; we keep those choices. Notification emails are sent from this site; nothing is shared with anyone else."
+msgstr ""
+
+#: src/Rest/Controller.php:126
+msgid "Sign in to see your notifications."
+msgstr ""
+
+#: src/Rest/Controller.php:137
+msgid "You can’t send notifications to other people."
+msgstr ""
+
+#: src/Rest/Controller.php:300
+msgid "There’s no notification with that ID in your inbox."
+msgstr ""
+
+#: src/Sources/Comments.php:32
+#: src/Sources/Comments.php:47
+msgid "Comments"
+msgstr ""
+
+#: src/Sources/Comments.php:37
+msgid "Replies to people’s comments, and new comments on posts they wrote."
+msgstr ""
+
+#: src/Sources/Comments.php:50
+msgid "Replies to your comments"
+msgstr ""
+
+#: src/Sources/Comments.php:51
+msgid "When someone replies to a comment you left."
+msgstr ""
+
+#: src/Sources/Comments.php:57
+msgid "Comments on your posts"
+msgstr ""
+
+#: src/Sources/Comments.php:58
+msgid "When someone comments on a post you wrote."
+msgstr ""
+
+#: src/Sources/Feedback.php:26
+msgid "Ruvelo Feedback"
+msgstr ""
+
+#: src/Sources/Feedback.php:31
+msgid "When a feature request someone posted or voted for is planned, started or shipped."
+msgstr ""
+
+#: src/Sources/Feedback.php:42
+msgid "Feedback you asked for"
+msgstr ""
+
+#: src/Sources/Feedback.php:43
+msgid "When a request you posted or voted for changes status or ships."
+msgstr ""
+
+#: src/Sources/Feedback.php:44
+msgid "Feedback"
+msgstr ""
+
+#: src/Sources/Notes.php:39
+msgid "Notes in the editor"
+msgstr ""
+
+#: src/Sources/Notes.php:44
+msgid "Mentions, replies, new notes on your posts and threads you’re in, from the block editor’s Notes. You can take over WordPress’s own note emails from each person’s preferences."
+msgstr ""
+
+#: src/Sources/Notes.php:62
+msgid "Notes"
+msgstr ""
+
+#: src/Sources/Notes.php:66
+msgid "Mentions in notes"
+msgstr ""
+
+#: src/Sources/Notes.php:67
+msgid "When someone @mentions you in a note."
+msgstr ""
+
+#: src/Sources/Notes.php:76
+msgid "Replies to your notes"
+msgstr ""
+
+#: src/Sources/Notes.php:77
+msgid "When someone replies to a note you wrote."
+msgstr ""
+
+#: src/Sources/Notes.php:83
+msgid "Notes on your posts"
+msgstr ""
+
+#: src/Sources/Notes.php:84
+msgid "When someone leaves a note on a post you wrote."
+msgstr ""
+
+#: src/Sources/Notes.php:91
+msgid "Note threads you’re in"
+msgstr ""
+
+#: src/Sources/Notes.php:92
+msgid "New replies in a note thread you started or replied to."
+msgstr ""
+
+#: src/Sources/Posts.php:24
+msgid "Posts"
+msgstr ""
+
+#: src/Sources/Posts.php:29
+msgid "Tells authors when their post is published or scheduled by someone else, or goes live on schedule."
+msgstr ""
+
+#: src/Sources/Posts.php:39
+msgid "Your posts"
+msgstr ""
+
+#: src/Sources/Posts.php:42
+msgid "Your post is published"
+msgstr ""
+
+#: src/Sources/Posts.php:43
+msgid "When a post you wrote goes live on schedule, or someone else publishes it."
+msgstr ""
+
+#: src/Sources/Posts.php:50
+msgid "Your post is scheduled"
+msgstr ""
+
+#: src/Sources/Posts.php:51
+msgid "When someone else schedules a post you wrote."
+msgstr ""
+
+#: src/Sources/Posts.php:110
+msgid "(no title)"
+msgstr ""
+
+#: src/Sources/Posts.php:115
+msgid "It went live on schedule."
+msgstr ""
+
+#. translators: %s: person's name
+#: src/Sources/Posts.php:117
+#, php-format
+msgid "%s published it."
+msgstr ""
+
+#. translators: %s: person's name
+#: src/Sources/Posts.php:117
+msgid "It’s live now."
+msgstr ""
+
+#. translators: %s: person's name
+#: src/Sources/Posts.php:135
+#, php-format
+msgid "%s scheduled it."
+msgstr ""
+
+#: src/Sources/Sources.php:47
+msgid "Announcements"
+msgstr ""
+
+#: src/Sources/Sources.php:48
+msgid "Messages from the site’s team, and notifications without a type of their own."
+msgstr ""
+
+#: src/Sources/Sources.php:49
+#: src/Types.php:164
+msgid "Other"
+msgstr ""
+
+#: src/Sources/Sources.php:115
+msgid "Someone"
+msgstr ""
+
+#: src/Types.php:39
+msgid "Notification type names use lowercase letters, numbers, dashes and underscores, up to 100 characters."
+msgstr ""
+
+#: templates/bell-items.php:17
+msgid "You’re all caught up"
+msgstr ""
+
+#: templates/bell-items.php:18
+msgid "New notifications will show up here."
+msgstr ""
+
+#: templates/bell-items.php:36
+#: templates/inbox.php:68
+msgid "Unread"
+msgstr ""
+
+#. translators: 1: "Notifications", 2: number unread
+#: templates/bell.php:17
+#: assets/js/inbox.js:80
+#, php-format,js-format
+msgid "%1$s, %2$d unread"
+msgid_plural "%1$s, %2$d unread"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/bell.php:30
+#: templates/inbox.php:53
+msgid "Mark all as read"
+msgstr ""
+
+#: templates/bell.php:37
+msgid "View all"
+msgstr ""
+
+#. translators: %s: "5 unread", emphasised
+#: templates/inbox.php:40
+#, php-format
+msgid "You have %s."
+msgstr ""
+
+#. translators: %d: number of unread notifications
+#: templates/inbox.php:42
+#, php-format
+msgid "%d unread"
+msgid_plural "%d unread"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/inbox.php:66
+msgid "Show"
+msgstr ""
+
+#: templates/inbox.php:67
+msgid "All"
+msgstr ""
+
+#: templates/inbox.php:79
+msgid "All types"
+msgstr ""
+
+#: templates/inbox.php:84
+msgid "Filter"
+msgstr ""
+
+#: templates/inbox.php:93
+msgid "Nothing here"
+msgstr ""
+
+#: templates/inbox.php:94
+msgid "No notifications match. Everything else is under All."
+msgstr ""
+
+#: templates/inbox.php:94
+msgid "Show all"
+msgstr ""
+
+#: templates/inbox.php:96
+msgid "Your inbox is empty"
+msgstr ""
+
+#: templates/inbox.php:97
+msgid "When someone mentions you, replies to you or something you follow changes, it shows up here."
+msgstr ""
+
+#: templates/inbox.php:103
+msgid "Select all"
+msgstr ""
+
+#: templates/inbox.php:104
+msgid "Bulk action"
+msgstr ""
+
+#: templates/inbox.php:106
+msgid "With selected…"
+msgstr ""
+
+#: templates/inbox.php:107
+#: templates/parts/item.php:42
+msgid "Mark as read"
+msgstr ""
+
+#: templates/inbox.php:108
+#: templates/parts/item.php:42
+msgid "Mark as unread"
+msgstr ""
+
+#: templates/inbox.php:109
+#: templates/parts/item.php:48
+msgid "Delete"
+msgstr ""
+
+#: templates/inbox.php:111
+msgid "Apply"
+msgstr ""
+
+#: templates/inbox.php:124
+msgid "Pages"
+msgstr ""
+
+#. translators: 1: current page, 2: number of pages
+#: templates/inbox.php:127
+#, php-format
+msgid "Page %1$d of %2$d"
+msgstr ""
+
+#: templates/inbox.php:130
+msgid "Newer"
+msgstr ""
+
+#: templates/inbox.php:133
+msgid "Older"
+msgstr ""
+
+#. translators: %s: notification title
+#: templates/parts/item.php:22
+#, php-format
+msgid "Select “%s”"
+msgstr ""
+
+#: templates/parts/item.php:26
+msgid "Unread:"
+msgstr ""
+
+#: templates/preferences.php:28
+msgid "Choose how you hear about each kind of update. Changes apply to new notifications."
+msgstr ""
+
+#: templates/preferences.php:32
+msgid "Back to notifications"
+msgstr ""
+
+#: templates/preferences.php:43
+msgid "Nothing to choose yet"
+msgstr ""
+
+#: templates/preferences.php:44
+msgid "When this site starts sending notifications, you can choose how you get each kind here."
+msgstr ""
+
+#: templates/preferences.php:55
+msgid "Notification"
+msgstr ""
+
+#: templates/preferences.php:67
+msgid "Always on"
+msgstr ""
+
+#: templates/preferences.php:81
+msgid "Not available for this notification"
+msgstr ""
+
+#: templates/preferences.php:81
+msgid "Not available"
+msgstr ""
+
+#: templates/preferences.php:92
+msgid "Save preferences"
+msgstr ""
+
+#: templates/preferences.php:94
+msgid "Emails wait a few minutes, so several updates arrive as one. Each email has a link to stop that kind."
+msgstr ""
+
+#: templates/preferences.php:96
+msgid "Some notification emails are paused on this site; your choices are kept for when they’re back."
+msgstr ""
+
+#: templates/sign-in.php:13
+msgid "Your notifications live here once you’re signed in."
+msgstr ""
+
+#: templates/sign-in.php:13
+msgid "Sign in"
+msgstr ""
+
+#: assets/js/blocks.js:36
+msgid "Show the heading"
+msgstr ""
+
+#: assets/js/blocks.js:42
+msgid "Show the Preferences tab"
+msgstr ""
+
+#: assets/js/blocks.js:43
+msgid "People choose which notifications they get, without visiting the admin."
+msgstr ""
+
+#: assets/js/blocks.js:71
+msgid "Notification Bell"
+msgstr ""
+
+#: assets/js/blocks.js:73
+msgid "Label"
+msgstr ""
+
+#: assets/js/blocks.js:74
+msgid "For screen readers and the dropdown’s heading. Defaults to “Notifications”."
+msgstr ""
+
+#: assets/js/inbox.js:191
+msgid "All notifications marked as read."
+msgstr ""
+
+#. translators: %d: number of new notifications
+#: assets/js/inbox.js:233
+#, js-format
+msgid "%d new notification"
+msgid_plural "%d new notifications"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/js/inbox.js:272
+msgid "Choose some notifications and an action first."
+msgstr ""
+
+#. translators: %d: number of notifications
+#: assets/js/inbox.js:276
+#, js-format
+msgid "Delete %d notification?"
+msgid_plural "Delete %d notifications?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: blocks/inbox-bell/block.json
+msgctxt "block title"
+msgid "Notification Bell"
+msgstr ""
+
+#: blocks/inbox-bell/block.json
+msgctxt "block description"
+msgid "A bell for your site’s header: the unread count and the latest notifications in a dropdown. Shows nothing to visitors who aren’t signed in."
+msgstr ""
+
+#: blocks/inbox-bell/block.json
+#: blocks/inbox/block.json
+msgctxt "block keyword"
+msgid "notifications"
+msgstr ""
+
+#: blocks/inbox-bell/block.json
+#: blocks/inbox/block.json
+msgctxt "block keyword"
+msgid "inbox"
+msgstr ""
+
+#: blocks/inbox-bell/block.json
+#: blocks/inbox/block.json
+msgctxt "block keyword"
+msgid "bell"
+msgstr ""
+
+#: blocks/inbox/block.json
+msgctxt "block title"
+msgid "Inbox"
+msgstr ""
+
+#: blocks/inbox/block.json
+msgctxt "block description"
+msgid "The signed-in person’s notifications and preferences, for membership sites and front-end dashboards."
+msgstr ""
+
+#: blocks/inbox/block.json
+msgctxt "block keyword"
+msgid "preferences"
+msgstr ""

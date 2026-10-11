@@ -1,0 +1,43 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "ruvelo/inbox",
+    "version": "1.0.0",
+    "title": "Inbox",
+    "category": "widgets",
+    "icon": "bell",
+    "description": "The signed-in person’s notifications and preferences, for membership sites and front-end dashboards.",
+    "keywords": [
+        "notifications",
+        "inbox",
+        "bell",
+        "preferences"
+    ],
+    "textdomain": "ruvelo-inbox",
+    "attributes": {
+        "showHeading": {
+            "type": "boolean",
+            "default": true
+        },
+        "showPreferences": {
+            "type": "boolean",
+            "default": true
+        },
+        "perPage": {
+            "type": "number",
+            "default": 20
+        }
+    },
+    "supports": {
+        "html": false,
+        "align": ["wide", "full"],
+        "spacing": {
+            "margin": true,
+            "padding": true
+        }
+    },
+    "editorScript": "ruvelo-inbox-blocks",
+    "style": "ruvelo-inbox",
+    "render": "file:./render.php",
+    "example": {}
+}
